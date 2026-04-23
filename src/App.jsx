@@ -8,22 +8,36 @@ import Listado from './Listado'
 import './Listado.css'
 import './cita.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [citas, setCitas] = useState([]);
+
+  const agregarCita = (nuevaCita) => {
+    setCitas([...citas, nuevaCita]);
+  };
+
+  const eliminarCita = (id) => {
+    const confirmar = window.confirm("¿Estás seguro de que deseas eliminar esta cita?");
+    if (confirmar) {
+      const nuevasCitas = citas.filter(cita => cita.id != id);
+      setCitas(nuevasCitas);
+    }
+  };
+
+
 
   return (
     <>
       <h1>ADMINISTRADOR DE PACIENTES</h1>
       <div className="container">
         <div className="row">
-          <ComponenteCrearCita />
-          <Listado />
+
+          <ComponenteCrearCita agregarCita={agregarCita} />
+
+          <Listado citas={citas} eliminarCita={eliminarCita} />
         </div>
       </div>
-
-
-
-
     </>
   )
 }

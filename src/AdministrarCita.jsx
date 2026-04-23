@@ -1,20 +1,24 @@
-import './cita.css'
+import React from 'react';
+import './cita.css';
+import { useState } from 'react';
 
-function AdministrarCita() {
+function AdministrarCita({ cita, eliminarCita }) {
     return (
         <div className="cita">
-            <p>Mascota: <span>Sifon</span></p>
-            <p>Dueño: <span>Flecha</span></p>
-            <p>Fecha: <span>2023-08-05</span></p>
-            <p>Hora: <span>09:24</span></p>
-            <p>Sintomas: <span>Duerme mucho</span></p>
+            <p>Mascota: <span>{cita.mascota}</span></p>
+            <p>Dueño: <span>{cita.propietario}</span></p>
+            <p>Fecha: <span>{cita.fecha}</span></p>
+            <p>Hora: <span>{cita.hora}</span></p>
+            <p>Síntomas: <span>{cita.sintomas}</span></p>
 
-            <button className="button eliminar u-full-width">
+            <button 
+                className="button eliminar u-full-width"
+                onClick={() => eliminarCita(cita.id)} 
+            >
                 Eliminar
             </button>
         </div>
-    )
+    );
 }
 
-
-export default AdministrarCita
+export default AdministrarCita;
